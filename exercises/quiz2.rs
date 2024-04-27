@@ -31,21 +31,21 @@ mod my_module {
     use super::Command;
 
     // TODO: Complete the function signature!
-    pub fn transformer(input: Vec<String,Command>) -> Vec<String> {
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
         // TODO: Complete the output declaration!
         let mut output: Vec<String> = vec![];
         for (string, command) in input.iter() {
             // TODO: Complete the function body. You can do it!
             for(string,command) in input.iter(){
                 match command{
-                    Command::Uppercase => output.push(string.to_upper_case()),
+                    Command::Uppercase => output.push(string.to_uppercase()),
                     Command::Trim => output.push(string.trim().to_string()),
-                    Command::Append(x) => {
+                    Command::Append(usize) => {
                         let mut ans=String::new();
-                        for i in 0..x {
-                            ans += string.clone();
+                        for i in 0..*usize {
+                            ans += &string.clone();
                         }
-                        output.push(ans);
+                        output.push(format!("{}bar",ans));
                     }
                 }
             }
